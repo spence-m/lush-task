@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorPage from "next/error";
 
 import { getProducts, Product } from "../api/product-api";
 import Deck from "../components/deck";
@@ -8,6 +9,10 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
+  if (!props.products) {
+    return <ErrorPage statusCode={500} />;
+  }
+
   return (
     <Layout>
       <div>

@@ -1,4 +1,6 @@
+import React from "react";
 import Image from "next/image";
+import ErrorPage from "next/error";
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -14,6 +16,10 @@ interface ProductProps {
 }
 
 export default function Product(props: ProductProps) {
+  if (!props.detail) {
+    return <ErrorPage statusCode={500} />;
+  }
+
   return (
     <Layout>
       <div className="flex justify-center">
